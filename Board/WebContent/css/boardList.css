@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+table {
+	width: 80%;
+	
+}
+
+table, tr, th, td {
+	padding: 5px 10px;
+	border: 1px solid #000;
+	border-collapse: collapse;
+	color: #000;
+}
+
+th {
+	background-color: gray;
+	color: white;
+}
+#bid {
+	text-align: center;
+}
+#btitle {
+	width: 75%;
+}
+.write {
+	margin: 20px;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}
