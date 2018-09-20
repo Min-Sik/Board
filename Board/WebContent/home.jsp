@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel=stylesheet href="css/home.css">
 </head>
 <body>
-	홈입니다!
 </body>
 </html>
