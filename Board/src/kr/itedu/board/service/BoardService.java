@@ -35,4 +35,21 @@ public class BoardService {
 		BoardDAO dao = BoardDAO.getInstance();
 		dao.boardDelete(btype, bid);
 	}
+	
+	public int boardPage(int btype) {
+		BoardDAO dao = BoardDAO.getInstance();
+		int result = dao.boardPage(btype);
+		if(result%10==0) {
+			return result/10;
+		} else {
+			return result/10 + 1;
+		}
+	}
+	
+	public ArrayList<BoardVO> getBoardPage(int btype, int page) {
+		ArrayList<BoardVO> data = null;
+		BoardDAO dao = BoardDAO.getInstance();
+		data = dao.getBoardPage(btype, page);
+		return data ;
+	}
  }

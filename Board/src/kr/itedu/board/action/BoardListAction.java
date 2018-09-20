@@ -21,12 +21,17 @@ public class BoardListAction implements Action {
 		
 		BoardService service = new BoardService();
 		int btype = Utils.getParamInt(request.getParameter("btype"));
-		ArrayList<BoardVO> data = service.getBoardList(btype);
+		int page = Utils.getParamInt(request.getParameter("page"));
+		int pageLimit = service.boardPage(btype);
+
+		ArrayList<BoardVO> data = service.getBoardPage(btype, page);
 		
+		request.setAttribute("page", page);
 		request.setAttribute("title", Var.TITLES[btype-1]);
 		request.setAttribute("content", "boardList");
 		request.setAttribute("data", data);
-		
+		request.setAttribute("pageLimit", pageLimit);
+	
 		return forward;
 	}
 }

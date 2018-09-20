@@ -38,7 +38,7 @@ public class BoardRegAction implements Action {
 				
 				BoardService service = new BoardService();
 				service.boardInsert(title, content, btype);		
-				forward.setPath("boardList.bo?btype=" + btype);
+				forward.setPath("boardList.bo?page=1&btype=" + btype);
 				forward.setRedirect(true);			
 			} else {
 				String title = request.getParameter("btitle");
@@ -46,7 +46,7 @@ public class BoardRegAction implements Action {
 				
 				BoardService service = new BoardService();
 				service.boardUpdate(title, content, btype, bid);		
-				forward.setPath("boardList.bo?btype=" + btype);
+				forward.setPath("boardList.bo?page=1&btype=" + btype);
 				forward.setRedirect(true);	
 			}
 		}

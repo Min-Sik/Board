@@ -36,3 +36,11 @@ a {
 	color: #000;
 	text-decoration: none;
 }
+
+.page {
+	display: inline-block;
+	width: 40px;
+	padding: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
