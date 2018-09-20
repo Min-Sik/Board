@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-body {
-	background: url(''img/MHW-Bazelgeuse_Render_001.png) no-repeat center;
-	background-size: cover;
+.main {
+	height: 100%;
+	background: url(../img/MHW-Bazelgeuse_Render_001.png) no-repeat center;
+	background-size: contain;
 }

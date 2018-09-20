@@ -4,8 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/boardList.css?ver=1.7">
 <script>
 	function forward() {
-		var page = ${page};
-		if(page > 1) {
+		if(${page} > 1) {
 			location.href="boardList.bo?btype=" + ${param.btype } + "&page=" + ${page-1 };
 		} else {
 			return;
@@ -13,9 +12,7 @@
 	}
 	
 	function backward() {
-		var page = ${page};
-		var pageLimit = ${pageLimit};
-		if(page < pageLimit) {
+		if(${page} < ${pageLimit}) {
 			location.href="boardList.bo?btype=" + ${param.btype } + "&page=" + ${page+1 };
 		} else {
 			return;
