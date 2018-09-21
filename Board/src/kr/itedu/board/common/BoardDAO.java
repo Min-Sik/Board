@@ -84,8 +84,7 @@ public class BoardDAO {
 	
 	public void boardInsert(String title, String content, int btype) {
 		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;		
+		PreparedStatement ps = null;		
 		String query = " insert into t_board" + btype + " (bid, btitle, bcontent) values "
 				+ " ((select nvl(max(bid), 0)+1 from t_board" + btype +"), ? , ?) ";
 		
@@ -94,13 +93,13 @@ public class BoardDAO {
 			ps = conn.prepareStatement(query);
 			ps.setString(1, title);
 			ps.setString(2, content);
-			rs = ps.executeQuery();
+			ps.executeQuery();
 		} catch (SQLException e) {
 
 		} catch (Exception e) {
 			
 		} finally {
-			close(conn, ps, rs);
+			close(conn, ps);
 		}
 	}
 	

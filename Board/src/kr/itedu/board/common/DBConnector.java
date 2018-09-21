@@ -40,6 +40,10 @@ public class DBConnector {
 		close(null, p, r);
 	}
 	
+	public static void close(Connection conn, PreparedStatement ps) {
+		close(conn, ps, null);
+	}
+	
 	public static void close(Connection conn, PreparedStatement ps, ResultSet rs) {
 		if(conn!=null) {
 			try { conn.close(); } catch (Exception e) {}

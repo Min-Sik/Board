@@ -20,13 +20,10 @@ public class BoardRegAction implements Action {
 		int btype = Utils.getParamInt(request.getParameter("btype"));
 		int reg = Utils.getParamInt(request.getParameter("reg"));
 		if(reg==0) {
-			if(bid==0) {
 				request.setAttribute("title", "글쓰기");
-				request.setAttribute("content", "boardReg");
-			} else {
-				request.setAttribute("title", "글수정");
-				request.setAttribute("content", "boardReg");
-				
+				request.setAttribute("content", "boardReg");		
+			if(bid==0) {} 
+			else {
 				BoardService service = new BoardService();
 				BoardVO vo = service.getBoardDetail(bid, btype);
 				request.setAttribute("vo", vo);				

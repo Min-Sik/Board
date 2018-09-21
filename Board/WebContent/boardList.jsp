@@ -4,18 +4,17 @@
 <link rel="stylesheet" type="text/css" href="css/boardList.css?ver=1.7">
 <script>
 	function forward() {
-		if(${page} > 1) {
+		var page = ${page };
+		if(page > 1) {
 			location.href="boardList.bo?btype=" + ${param.btype } + "&page=" + ${page-1 };
-		} else {
-			return;
 		}
 	}
 	
 	function backward() {
-		if(${page} < ${pageLimit}) {
+		var page = ${page };
+		var pageLimit = ${pageLimit };
+		if(page < pageLimit) {
 			location.href="boardList.bo?btype=" + ${param.btype } + "&page=" + ${page+1 };
-		} else {
-			return;
 		}
 	}
 </script>
