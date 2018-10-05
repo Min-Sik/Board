@@ -7,7 +7,7 @@ import kr.itedu.board.ActionForward;
 import kr.itedu.board.common.Utils;
 import kr.itedu.board.service.BoardService;
 
-public class BoardDeleteAction implements Action {
+public class BoardCommentAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -15,14 +15,14 @@ public class BoardDeleteAction implements Action {
 		
 		int bid = Utils.getParamInt(request.getParameter("bid"));
 		int btype = Utils.getParamInt(request.getParameter("btype"));
+		String t_comment = request.getParameter("t_comment");
 		
-		BoardService service = new BoardService();
-		service.boardDelete(btype, bid);
+		BoardService service = new BoardService();		
+		service.boardComment(bid, btype, t_comment);
+		forward.setPath("boardDetail.bo?btype=" + btype + "&bid=" + bid);
+		forward.setRedirect(true);	
 		
-		forward.setPath("boardList.bo?page=1&btype=" + btype);
-		forward.setRedirect(true);
 		return forward;
 	}
-
 
 }

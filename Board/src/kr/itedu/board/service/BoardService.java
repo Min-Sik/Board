@@ -3,6 +3,7 @@ package kr.itedu.board.service;
 import java.util.ArrayList;
 
 import kr.itedu.board.BoardVO;
+import kr.itedu.board.CommentVO;
 import kr.itedu.board.common.BoardDAO;
 
 public class BoardService {
@@ -46,10 +47,21 @@ public class BoardService {
 		}
 	}
 	
+	public void boardComment(int bid, int btype, String t_comment) {
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.boardComment(bid, btype, t_comment);
+	}
+	
 	public ArrayList<BoardVO> getBoardPage(int btype, int page) {
 		ArrayList<BoardVO> data = null;
 		BoardDAO dao = BoardDAO.getInstance();
 		data = dao.getBoardPage(btype, page);
 		return data ;
+	}
+	
+	public ArrayList<CommentVO> getBoardComment(int bid, int btype) {
+		BoardDAO dao = BoardDAO.getInstance();
+		ArrayList<CommentVO> list = dao.getboardComment(bid, btype);
+		return list;
 	}
  }

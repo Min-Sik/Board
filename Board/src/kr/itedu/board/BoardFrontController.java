@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.itedu.board.action.Action;
+import kr.itedu.board.action.BoardCommentAction;
 import kr.itedu.board.action.BoardDeleteAction;
 import kr.itedu.board.action.BoardDetailAction;
 import kr.itedu.board.action.BoardHomeAction;
@@ -74,7 +75,20 @@ public class BoardFrontController extends HttpServlet {
     			//TODO: 예외처리
     			e.printStackTrace();
     		}
-    	}
+    	} else if(comd.equals("/boardComment.bo")) {
+    		action = new BoardCommentAction();
+    		try {
+    			forward = action.execute(request, response);
+    		} catch (Exception e) {
+    			//TODO: 예외처리
+    			e.printStackTrace();
+    		}
+    	} 
+    	
+    	
+    	
+    	
+    	
     	 	
     	if(forward!=null) {
     		if(forward.isRedirect()) {

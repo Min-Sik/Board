@@ -1,10 +1,13 @@
 package kr.itedu.board.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.itedu.board.ActionForward;
 import kr.itedu.board.BoardVO;
+import kr.itedu.board.CommentVO;
 import kr.itedu.board.common.Utils;
 import kr.itedu.board.common.Var;
 import kr.itedu.board.service.BoardService;
@@ -20,9 +23,11 @@ public class BoardDetailAction implements Action {
 		
 		BoardService service = new BoardService();
 		BoardVO vo = service.getBoardDetail(bid, btype);
+		ArrayList<CommentVO> data = service.getBoardComment(bid, btype);
 		request.setAttribute("title", "게시글");
 		request.setAttribute("content", "boardDetail");
 		request.setAttribute("vo", vo);
+		request.setAttribute("data", data);
 		
 		return forward;
 	}

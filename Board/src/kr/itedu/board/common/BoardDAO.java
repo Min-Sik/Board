@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import kr.itedu.board.BoardVO;
+import kr.itedu.board.CommentVO;
 
 public class BoardDAO {
 	
@@ -174,11 +175,11 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getBoardPage(int btype, int page) {
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 		String query = " select * from ( " +
-						"	select rownum as rnum, z.* from ( " +
-						" 		select * from t_board" + btype +
-						" 		order by bid desc " +
-						"	) z where rownum <= ? "
-						+ ") where rnum >= ? ";
+						" select rownum as rnum, z.* from ( " +
+						" select * from t_board" + btype +
+						" order by bid desc " +
+						" ) z where rownum <= ? " + 
+						" ) where rnum >= ? ";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;		
@@ -196,6 +197,60 @@ public class BoardDAO {
 				vo.setBtitle(rs.getString("btitle"));
 				vo.setBcontent(rs.getString("bcontent"));
 				vo.setBregdate(rs.getString("bregdate"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			
+		} catch (Exception e) {
+			
+		} finally {
+			close(conn, ps, rs);
+		}
+		return list;
+	}
+	
+	public void boardComment(int bid, int btype, String t_comment) {
+		Connection conn = null;
+		PreparedStatement ps = null;		
+		String query = " insert into t_comment (cid, bid, btype, t_comment) values "
+				+ " ((select nvl(max(cid), 0)+1 from t_comment), ?, ?, ?) ";
+		
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, bid);
+			ps.setInt(2, btype);
+			ps.setString(3, t_comment);
+			ps.executeQuery();
+		} catch (SQLException e) {
+
+		} catch (Exception e) {
+			
+		} finally {
+			close(conn, ps);
+		}
+	}
+	
+	public ArrayList<CommentVO> getboardComment(int bid, int btype) {
+		ArrayList<CommentVO> list = new ArrayList<CommentVO>();
+		String query = " select * from t_comment where bid =" + bid + " and btype = " + btype;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;		
+	
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement(query);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				CommentVO vo = new CommentVO();
+				vo.setCid(rs.getInt("cid"));
+				vo.setBid(rs.getInt("bid"));
+				vo.setBtype(rs.getInt("btype"));
+				vo.setT_comment(rs.getString("t_comment"));
+				vo.setCregdate(rs.getString("cregdate"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
