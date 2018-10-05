@@ -7,7 +7,7 @@ import kr.itedu.board.ActionForward;
 import kr.itedu.board.common.Utils;
 import kr.itedu.board.service.BoardService;
 
-public class BoardCommentAction implements Action {
+public class CommentInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -24,5 +24,4 @@ public class BoardCommentAction implements Action {
 		
 		return forward;
 	}
-
 }

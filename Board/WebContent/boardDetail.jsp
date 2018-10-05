@@ -36,7 +36,7 @@
 </c:forEach>
 	</div>
 	<div class="comment">
-		<form action="boardComment.bo?bid=${vo.getBid() }&btype=${param.btype }" method="post">
+		<form action="commentInsert.bo?bid=${vo.getBid() }&btype=${param.btype }" method="post">
 			<textarea class="content" name="t_comment"></textarea><br>
 			<input class="confirm" type="submit" value="등록">
 		</form>

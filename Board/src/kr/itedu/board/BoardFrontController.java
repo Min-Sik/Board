@@ -10,12 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.itedu.board.action.Action;
-import kr.itedu.board.action.BoardCommentAction;
+import kr.itedu.board.action.CommentInsertAction;
 import kr.itedu.board.action.BoardDeleteAction;
 import kr.itedu.board.action.BoardDetailAction;
 import kr.itedu.board.action.BoardHomeAction;
 import kr.itedu.board.action.BoardListAction;
 import kr.itedu.board.action.BoardRegAction;
+import kr.itedu.board.action.CommentDeleteAction;
 
 @WebServlet("*.bo")
 public class BoardFrontController extends HttpServlet {
@@ -75,8 +76,16 @@ public class BoardFrontController extends HttpServlet {
     			//TODO: 예외처리
     			e.printStackTrace();
     		}
-    	} else if(comd.equals("/boardComment.bo")) {
-    		action = new BoardCommentAction();
+    	} else if(comd.equals("/commentInsert.bo")) {
+    		action = new CommentInsertAction();
+    		try {
+    			forward = action.execute(request, response);
+    		} catch (Exception e) {
+    			//TODO: 예외처리
+    			e.printStackTrace();
+    		}
+    	} else if(comd.equals("/commentDelete.bo")) {
+    		action = new CommentDeleteAction();
     		try {
     			forward = action.execute(request, response);
     		} catch (Exception e) {
@@ -84,12 +93,8 @@ public class BoardFrontController extends HttpServlet {
     			e.printStackTrace();
     		}
     	} 
-    	
-    	
-    	
-    	
-    	
-    	 	
+ 
+ 
     	if(forward!=null) {
     		if(forward.isRedirect()) {
     			response.sendRedirect(forward.getPath());
