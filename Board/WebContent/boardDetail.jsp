@@ -29,6 +29,7 @@
 <c:forEach var="i" items="${data }">
 		<div class="commentTitle">  
 			${i.getCregdate() }
+			<a href="commentDelete.bo?cid=${i.getCid() }&bid=${vo.getBid() }&btype=${param.btype }">삭제</a>
 		</div>
 		<div class="commentContent">
 			<pre>${i.getT_comment() }</pre>

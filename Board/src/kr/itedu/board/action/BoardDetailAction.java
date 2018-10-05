@@ -23,7 +23,7 @@ public class BoardDetailAction implements Action {
 		
 		BoardService service = new BoardService();
 		BoardVO vo = service.getBoardDetail(bid, btype);
-		ArrayList<CommentVO> data = service.getBoardComment(bid, btype);
+		ArrayList<CommentVO> data = service.getComment(bid, btype);
 		request.setAttribute("title", "게시글");
 		request.setAttribute("content", "boardDetail");
 		request.setAttribute("vo", vo);

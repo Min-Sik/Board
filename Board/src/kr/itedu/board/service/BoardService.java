@@ -47,9 +47,9 @@ public class BoardService {
 		}
 	}
 	
-	public void boardComment(int bid, int btype, String t_comment) {
+	public void commentInsert(int bid, int btype, String t_comment) {
 		BoardDAO dao = BoardDAO.getInstance();
-		dao.boardComment(bid, btype, t_comment);
+		dao.commentInsert(bid, btype, t_comment);
 	}
 	
 	public ArrayList<BoardVO> getBoardPage(int btype, int page) {
@@ -59,9 +59,19 @@ public class BoardService {
 		return data ;
 	}
 	
-	public ArrayList<CommentVO> getBoardComment(int bid, int btype) {
+	public ArrayList<CommentVO> getComment(int bid, int btype) {
 		BoardDAO dao = BoardDAO.getInstance();
-		ArrayList<CommentVO> list = dao.getboardComment(bid, btype);
+		ArrayList<CommentVO> list = dao.getComment(bid, btype);
 		return list;
+	}
+	
+	public void commentDelete(int cid) {
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.commentDelete(cid);
+	}
+	
+	public void commentDeleteAll(int bid) {
+		BoardDAO dao = BoardDAO.getInstance();
+		dao.commentDeleteAll(bid);
 	}
  }

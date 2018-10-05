@@ -17,6 +17,7 @@ public class BoardDeleteAction implements Action {
 		int btype = Utils.getParamInt(request.getParameter("btype"));
 		
 		BoardService service = new BoardService();
+		service.commentDeleteAll(bid);
 		service.boardDelete(btype, bid);
 		
 		forward.setPath("boardList.bo?page=1&btype=" + btype);

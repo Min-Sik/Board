@@ -130,20 +130,19 @@ public class BoardDAO {
 	public void boardDelete(int btype, int bid) {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;		
+	
 		String query = " delete from t_board" + btype + " where bid = " + bid;
 		
 		try {
 			conn = getConn();
 			ps = conn.prepareStatement(query);
-			rs = ps.executeQuery();
-
+			ps.execute();
 		} catch (SQLException e) {
 			
 		} catch (Exception e) {
 			
 		} finally {
-			close(conn, ps, rs);
+			close(conn, ps, null);
 		}
 	}
 	
@@ -209,7 +208,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public void boardComment(int bid, int btype, String t_comment) {
+	public void commentInsert(int bid, int btype, String t_comment) {
 		Connection conn = null;
 		PreparedStatement ps = null;		
 		String query = " insert into t_comment (cid, bid, btype, t_comment) values "
@@ -231,9 +230,10 @@ public class BoardDAO {
 		}
 	}
 	
-	public ArrayList<CommentVO> getboardComment(int bid, int btype) {
+	public ArrayList<CommentVO> getComment(int bid, int btype) {
 		ArrayList<CommentVO> list = new ArrayList<CommentVO>();
-		String query = " select * from t_comment where bid =" + bid + " and btype = " + btype;
+		String query = " select * from t_comment where bid =" + bid + 
+				" and btype = " + btype + " order by cid ";
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -261,5 +261,43 @@ public class BoardDAO {
 			close(conn, ps, rs);
 		}
 		return list;
+	}
+	
+	public void commentDelete(int cid) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		String query = " delete from t_comment where cid = " + cid;
+		
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement(query);
+			ps.execute();
+		} catch (SQLException e) {
+			
+		} catch (Exception e) {
+			
+		} finally {
+			close(conn, ps, null);
+		}
+	}
+	
+	public void commentDeleteAll(int bid) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		String query = " delete from t_comment where bid = " + bid;
+		
+		try {
+			conn = getConn();
+			ps = conn.prepareStatement(query);
+			ps.execute();
+		} catch (SQLException e) {
+			
+		} catch (Exception e) {
+			
+		} finally {
+			close(conn, ps, null);
+		}
 	}
 }
