@@ -278,7 +278,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			
 		} finally {
-			close(conn, ps, null);
+			close(conn, ps);
 		}
 	}
 	
@@ -297,7 +297,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			
 		} finally {
-			close(conn, ps, null);
+			close(conn, ps);
 		}
 	}
 }
