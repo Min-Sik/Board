@@ -22,7 +22,6 @@ import kr.itedu.board.action.CommentDeleteAction;
 public class BoardFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
     public BoardFrontController() {
         super();       
     }
@@ -34,7 +33,6 @@ public class BoardFrontController extends HttpServlet {
     	String comd = reqURI.substring(ctxPath.length());
     	ActionForward forward = null;
     	Action action = null;
-    	
     	
     	if(comd.equals("/boardList.bo")) {
     		action = new BoardListAction();
